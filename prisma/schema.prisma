@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String
+  password     String
+  profile_img  String
+  phone_number String
+  address      String
+  zip_code     String
+  city         String
+  state        String
+  country      String
+  description  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+
+  Poetry  Poetry[]
+  Comment Comment[]
+  Like    Like[]
+  @@map("users")
+  CommentLike CommentLike[]
+}
+
+model Poetry {
+  id          String   @id @default(uuid())
+  title       String
+  author_id   String
+  author      User     @relation(fields: [author_id], references: [id])
+  description String
+  image       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+
+  Comment Comment[]
+  Like    Like[]
+  @@map("poetry")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  author_id String
+  author    User     @relation(fields: [author_id], references: [id])
+  poetry_id String
+  poetry    Poetry   @relation(fields: [poetry_id], references: [id])
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@map("comments")
+  CommentLike CommentLike[]
+}
+
+model Like {
+  id        String   @id @default(uuid())
+  author_id String
+  author    User     @relation(fields: [author_id], references: [id])
+  poetry_id String
+  poetry    Poetry   @relation(fields: [poetry_id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@map("likes")
+}
+
+model CommentLike {
+  id         String   @id @default(uuid())
+  author_id  String
+  author     User     @relation(fields: [author_id], references: [id])
+  comment_id String
+  comment    Comment  @relation(fields: [comment_id], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+
+  @@map("comment_likes")
+}
