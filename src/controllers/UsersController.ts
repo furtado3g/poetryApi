@@ -116,7 +116,7 @@ class UserController {
 
   findOne(req: NextApiRequest, res: NextApiResponse) {
     this.prisma.user
-      .findOne({
+      .findUnique({
         where: {
           id: req.query.id,
         },
@@ -131,7 +131,7 @@ class UserController {
 
   findByEmail(req: NextApiRequest, res: NextApiResponse) {
     this.prisma.user
-      .findOne({
+      .findUnique({
         where: {
           email: req.query.email,
         },
