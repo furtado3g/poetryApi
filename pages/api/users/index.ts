@@ -11,3 +11,5 @@ const users = (req: NextApiRequest, res: NextApiResponse) => {
       break;
   }
 };
+
+export default users;
