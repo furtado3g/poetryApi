@@ -105,7 +105,21 @@ class UserController {
 
   findAll(req: NextApiRequest, res: NextApiResponse) {
     this.prisma.user
-      .findMany()
+      .findMany({
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          profile_img: true,
+          phone_number: true,
+          address: true,
+          zip_code: true,
+          city: true,
+          state: true,
+          country: true,
+          description: true,
+        },
+      })
       .then((users) => {
         res.status(200).json(users);
       })
@@ -119,6 +133,19 @@ class UserController {
       .findUnique({
         where: {
           id: req.query.id,
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          profile_img: true,
+          phone_number: true,
+          address: true,
+          zip_code: true,
+          city: true,
+          state: true,
+          country: true,
+          description: true,
         },
       })
       .then((user) => {
@@ -134,6 +161,19 @@ class UserController {
       .findUnique({
         where: {
           email: req.query.email,
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          profile_img: true,
+          phone_number: true,
+          address: true,
+          zip_code: true,
+          city: true,
+          state: true,
+          country: true,
+          description: true,
         },
       })
       .then((user) => {
