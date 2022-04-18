@@ -27,31 +27,35 @@ const Button = styled.button`
 `;
 
 const Home = () => {
-    return (
-        <Fragment>
-            <Head>
-                <title>Home</title>
-                <style>
-                    {`
-                        body {
-                            background-color: #f1f1f1;
-                            margin: 0;
-                            padding: 0;
-                            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-                        }
-                    `}
+    /*  return (
+         <Fragment>
+             <Head>
+                 <title>Home</title>
+                 <style>
+                     {`
+                         body {
+                             background-color: #f1f1f1;
+                             margin: 0;
+                             padding: 0;
+                             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                         }
+                     `}
+ 
+                 </style>
+             </Head>
+             <NavBar>
+                 <div className="img-container">
+                     <Image src="/image/logo_anemia_poetry.png" alt="logo" width={'50px'} height={'50px'} />
+                 </div>
+                 <Button>
+                     Login
+                 </Button>
+             </NavBar>
+         </Fragment>
+     ) */
 
-                </style>
-            </Head>
-            <NavBar>
-                <div className="img-container">
-                    <Image src="/image/logo_anemia_poetry.png" alt="logo" width={'50px'} height={'50px'} />
-                </div>
-                <Button>
-                    Login
-                </Button>
-            </NavBar>
-        </Fragment>
+    return (
+        <></>
     )
 }
 export default Home;
